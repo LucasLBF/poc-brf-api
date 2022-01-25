@@ -61,5 +61,3 @@ def _parse_pages (doc):
 
 def get_pages (pdf_doc, pdf_pwd=''):
     with_pdf(pdf_doc, _parse_pages, pdf_pwd)
-
-get_pages(PDF_PATH)

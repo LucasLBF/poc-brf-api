@@ -1,8 +1,6 @@
 import fitz
-import io
-from PIL import Image
 
-def get_images(PDF_PATH: str, i: int):
+def get_images(PDF_PATH: str, i: int) -> None:
     pdf_file = fitz.open(PDF_PATH)
     for img in pdf_file.get_page_images(i):
         xref = img[0]
