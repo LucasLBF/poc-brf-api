@@ -3,6 +3,7 @@ from pdfminer.layout import LTTextContainer
 import re
 from get_images import get_images
 from utils import fetch_data as fd
+from utils import move_imgs as mv
 
 
 def parse_pdfs(keyword: str) -> None:
@@ -23,3 +24,4 @@ def parse_pdfs(keyword: str) -> None:
                 count += 1
                 get_images("dataset/habitos_de_consumo_snacks.pdf", section[0] - 1)
         print(f'{count} seções encontradas')
+    mv.move_imgs()
