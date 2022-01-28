@@ -13,4 +13,3 @@ def fetch_data() -> list:
         file_dict["path"] = path.join(dataset_path, f)
         file_list.append(file_dict)
     return file_list
-        

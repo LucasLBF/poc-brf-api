@@ -1,9 +1,9 @@
 from pdfminer.high_level import extract_pages
 from pdfminer.layout import LTTextContainer
 import re
-from get_images import get_images
-from utils import fetch_data as fd
-from utils import move_imgs as mv
+from src.get_images import get_images
+from src.utils import fetch_data as fd
+from src.utils import move_imgs as mv
 
 
 def parse_pdfs(keyword: str) -> None:
@@ -17,11 +17,23 @@ def parse_pdfs(keyword: str) -> None:
                 if isinstance(elem, LTTextContainer):
                     content.append((page.pageid, re.sub(r'[\n]', '', elem.get_text())))
         count = 0
-        print(f'===== {file["name"].upper()} =====')
+        results = []
+        # print(f'===== {file["name"].upper()} =====')
         for section in content: 
             if keyword in str(section[1]):
-                print(section)
+                results.append(section)
                 count += 1
                 get_images("dataset/habitos_de_consumo_snacks.pdf", section[0] - 1)
-        print(f'{count} seções encontradas')
+        # print(f'{count} seções encontradas')
+    return results
     mv.move_imgs()
+
+#  [
+#       nome_do_pdf: {
+#        secoes: [{pag, trecho}] 
+#        n_secoes: 2,
+#        imgs: []
+#       },
+#       
+# ]
+#        
