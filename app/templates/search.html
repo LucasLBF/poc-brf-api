@@ -16,5 +16,18 @@
         <input type="text" name="kwrd" placeholder="Search.." />
       </div>
     </form>
+    {% if results %}
+    <div class="container">
+      {% for result in results %}
+      <div>
+      {% for s in secoes %}
+          {{ s.trecho }}
+          {{ result.nome }}
+          {{ s.pag }} 
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
   </body>
 </html>
