@@ -4,7 +4,7 @@ from os import listdir
 from pathlib import Path
 
 def move_imgs() -> None: 
-    img_folder = path.abspath("img")
+    img_folder = path.abspath("output_imgs")
     root_dir = Path(__file__).parent.parent.parent
     for file in listdir(root_dir):
         if file.endswith(".png"):
