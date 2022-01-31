@@ -31,6 +31,7 @@ def parse_pdfs(keyword: str) -> None:
     mv.move_imgs()
     return results
 
+# V1
 #  [
 #       {
 #        nome: blabla,
@@ -41,3 +42,13 @@ def parse_pdfs(keyword: str) -> None:
 #       
 # ]
 #        
+# V2
+# [
+#   {
+#       type: "text" | "image",
+#       source: string, 
+#       page: int,
+#       content: str | img_path,
+#       highlight: str
+#   } 
+# ]

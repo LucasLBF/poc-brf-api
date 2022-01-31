@@ -19,13 +19,13 @@
     {% if results %}
     <div class="container">
       {% for result in results %}
-      <div>
-      {% for s in secoes %}
-          {{ s.trecho }}
-          {{ result.nome }}
-          {{ s.pag }} 
+        {% for s in result["secoes"] %}
+          <div class="data-box">
+            {{ s.trecho }}
+            <p class="source-name">{{ result.nome }}</p>
+            Página {{ s.pag }} 
+          </div>
         {% endfor %}
-      </div>
       {% endfor %}
     </div>
     {% endif %}
