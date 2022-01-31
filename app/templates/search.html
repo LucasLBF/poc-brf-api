@@ -19,13 +19,27 @@
     {% if results %}
     <div class="container">
       {% for result in results %}
-        {% for s in result["secoes"] %}
+        {% if result["type"] == "text" %}
           <div class="data-box">
-            {{ s.trecho }}
-            <p class="source-name">{{ result.nome }}</p>
-            Página {{ s.pag }} 
+            <div class="data-box__text-container">
+              {{ result["content"] }}
+            </div>
+            <div class="data-box__content">
+              <p class="source-name">Fonte: {{ result["source"] }}</p>
+              <span class="page-ref">Página {{ result["page"] }}</span>
+            </div>
           </div>
-        {% endfor %}
+        {% else %}
+          <div class="data-box">
+            <div class="data-box__img-container">
+              <img class="data-box-img" src="output_imgs/{{ result.filename }}" alt=""/>
+            </div>
+            <div class="data-box__content">
+              <p class="source-name">{{ result["source"] }}</p>
+              <span class="page-ref">Pagina {{ result["page"] }}</span>
+            </div>
+          </div>
+        {% endif %}
       {% endfor %}
     </div>
     {% endif %}
