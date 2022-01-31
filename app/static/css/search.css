@@ -1,3 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #e9e9e9;
@@ -50,4 +60,21 @@
   .topnav input[type="text"] {
     border: 1px solid #ccc;
   }
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.data-box {
+  width: 30%;
+}
+
+.source-name {
+  font-weight: bold;
 }
