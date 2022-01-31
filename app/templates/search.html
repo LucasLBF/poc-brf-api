@@ -9,11 +9,11 @@
   </head>
   <body>
     <form method="post" action="/">
-      <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <input type="text" name="kwrd" placeholder="Search.." />
+      <div class="navbar">
+        <img class="navbar-brand" src='static/img/brf-logo.png' />
+        <div class="search-container">
+          <input class="searchbar" type="text" name="kwrd" placeholder="Pesquisar" />
+        </div>
       </div>
     </form>
     {% if results %}
@@ -32,10 +32,10 @@
         {% else %}
           <div class="data-box">
             <div class="data-box__img-container">
-              <img class="data-box-img" src="output_imgs/{{ result.filename }}" alt=""/>
+              <img class="data-box-img" src="http://placehold.it/200x200" alt=""/>
             </div>
             <div class="data-box__content">
-              <p class="source-name">{{ result["source"] }}</p>
+              <p class="source-name">Fonte: {{ result["source"] }}</p>
               <span class="page-ref">Pagina {{ result["page"] }}</span>
             </div>
           </div>

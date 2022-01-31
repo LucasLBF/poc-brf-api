@@ -3,7 +3,6 @@ from os import replace
 from os import listdir
 import re
 from pathlib import Path
-import base64
 
 def move_imgs(highlight: str) -> list: 
     img_folder = path.abspath("output_imgs")
@@ -16,10 +15,7 @@ def move_imgs(highlight: str) -> list:
             img = {}
             img["type"] = "image"
             img["source"] = source
-            img["page"] = page
-            with open(file, "rb") as imageFile:
-                encoding = base64.b64encode(imageFile.read())
-            # img["content"] = "data:image/png;base64," + str(encoding)
+            img["page"] = int(page) + 1
             img["filename"] = file
             img["highlight"] = highlight 
             imgs.append(img)

@@ -8,8 +8,8 @@ from app import get_images as img
 
 def parse_pdfs(keyword: str) -> None:
     files = fd.fetch_data()
-
     results = []
+    count = 0
     for file in files:
         pages = extract_pages(file["path"])
         content = []
@@ -17,9 +17,9 @@ def parse_pdfs(keyword: str) -> None:
             for elem in page:
                 if isinstance(elem, LTTextContainer):
                     content.append((page.pageid, re.sub(r'[\n]', '', elem.get_text())))
-        count = 0
         for section in content: 
             if keyword in str(section[1]):
+                count += 1
                 result = {}
                 result["type"] = "text"
                 result["source"] = file["name"]
@@ -30,26 +30,19 @@ def parse_pdfs(keyword: str) -> None:
                 results.append(result)
     imgs = mv.move_imgs(keyword)
     results += imgs
-    return results
+    return {"count": count, "results": results}
 
-# V1
-#  [
+
+# V3
+#  {
+#   count: int,
+#   results: [   
 #       {
-#        nome: blabla,
-#        secoes: [{pag, trecho}] 
-#        n_secoes: 2,
-#        imgs: []
-#       },
-#       
-# ]
-#        
-# V2
-# [
-#   {
-#       type: "text" | "image",
-#       source: string, 
-#       page: int,
-#       content: str | img_path,
-#       highlight: str
-#   } 
-# ]
+#           type: "text" | "image",
+#           source: string, 
+#           page: int,
+#           content: str | img_path,
+#           highlight: str
+#       } 
+#   ]
+# }
