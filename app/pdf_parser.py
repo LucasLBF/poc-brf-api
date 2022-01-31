@@ -18,17 +18,18 @@ def parse_pdfs(keyword: str) -> None:
                 if isinstance(elem, LTTextContainer):
                     content.append((page.pageid, re.sub(r'[\n]', '', elem.get_text())))
         count = 0
-        result = dict()
-        result["nome"] = file["name"]
-        result["secoes"] = []
         for section in content: 
             if keyword in str(section[1]):
-                result["secoes"].append({ "pag": section[0], "trecho": section[1]}) 
-                count += 1
+                result = {}
+                result["type"] = "text"
+                result["source"] = file["name"]
+                result["highlight"] = keyword
+                result["content"] = section[1]
+                result["page"] = section[0]
                 img.get_images(f"dataset/{file['name']}", section[0] - 1)
-        result["n_secoes"] = count
-        results.append(result)
-    mv.move_imgs()
+                results.append(result)
+    imgs = mv.move_imgs(keyword)
+    results += imgs
     return results
 
 # V1
